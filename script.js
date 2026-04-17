@@ -1,23 +1,40 @@
-const excuses = [
-    "My WiFi went on an emotional break.",
-    "My laptop refused to cooperate today.",
-    "Time moved faster than I did.",
-    "I was attending an urgent meeting with my pillow.",
-    "My keyboard stopped believing in me.",
-    "Gravity felt stronger this morning.",
-    "My brain is still booting..."
-];
+const excuses = {
+    work: [
+        "My internet connection decided to take a mental health day.",
+        "My laptop updated itself at the worst possible time.",
+        "I was in an urgent meeting with my coffee cup.",
+        "Slack notifications caused emotional damage."
+    ],
+    study: [
+        "My brain refused to load today's syllabus.",
+        "Books opened, motivation closed.",
+        "I was academically buffering.",
+        "My notes disappeared into the void."
+    ],
+    life: [
+        "Time moved faster than my intentions.",
+        "Reality had too many tabs open today.",
+        "I was busy overthinking everything.",
+        "My energy levels voted to stay in bed."
+    ]
+};
 
-function generateExcuse(){
-    const random = excuses[Math.floor(Math.random() * excuses.length)];
-    
+function generateExcuse() {
+    const categories = Object.keys(excuses);
+    const randomCategory = categories[Math.floor(Math.random() * categories.length)];
+
+    const list = excuses[randomCategory];
+    const excuse = list[Math.floor(Math.random() * list.length)];
+
     const el = document.getElementById("excuse");
-    el.style.transform = "scale(0.95)";
-    el.style.opacity = "0.5";
+
+    el.style.opacity = "0";
 
     setTimeout(() => {
-        el.innerText = random;
-        el.style.transform = "scale(1)";
+        el.innerHTML = `
+            <strong>Category:</strong> ${randomCategory.toUpperCase()}<br><br>
+            ${excuse}
+        `;
         el.style.opacity = "1";
     }, 200);
 }
