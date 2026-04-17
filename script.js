@@ -1,15 +1,23 @@
 const excuses = [
-    "My WiFi had emotional issues.",
-    "Laptop joined a silent protest.",
-    "Traffic was spiritually heavy.",
-    "My alarm clock resigned.",
-    "I was updating my life software.",
-    "My keyboard lost motivation.",
-    "Coffee machine betrayed me.",
-    "Gravity was stronger today."
+    "My WiFi went on an emotional break.",
+    "My laptop refused to cooperate today.",
+    "Time moved faster than I did.",
+    "I was attending an urgent meeting with my pillow.",
+    "My keyboard stopped believing in me.",
+    "Gravity felt stronger this morning.",
+    "My brain is still booting..."
 ];
 
 function generateExcuse(){
     const random = excuses[Math.floor(Math.random() * excuses.length)];
-    document.getElementById("excuse").innerText = random;
+    
+    const el = document.getElementById("excuse");
+    el.style.transform = "scale(0.95)";
+    el.style.opacity = "0.5";
+
+    setTimeout(() => {
+        el.innerText = random;
+        el.style.transform = "scale(1)";
+        el.style.opacity = "1";
+    }, 200);
 }
