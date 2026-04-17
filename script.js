@@ -1,40 +1,36 @@
-const excuses = {
-    work: [
-        "My internet connection decided to take a mental health day.",
-        "My laptop updated itself at the worst possible time.",
-        "I was in an urgent meeting with my coffee cup.",
-        "Slack notifications caused emotional damage."
-    ],
-    study: [
-        "My brain refused to load today's syllabus.",
-        "Books opened, motivation closed.",
-        "I was academically buffering.",
-        "My notes disappeared into the void."
-    ],
-    life: [
-        "Time moved faster than my intentions.",
-        "Reality had too many tabs open today.",
-        "I was busy overthinking everything.",
-        "My energy levels voted to stay in bed."
-    ]
-};
+const excuses = [
+    "My WiFi needed emotional healing.",
+    "My laptop went into existential crisis.",
+    "I was attending an urgent meeting with my pillow.",
+    "Time moved faster than my motivation.",
+    "My brain is still loading today's version.",
+    "Reality had too many bugs today.",
+    "Coffee machine was on strike."
+];
+
+let currentExcuse = "";
 
 function generateExcuse() {
-    const categories = Object.keys(excuses);
-    const randomCategory = categories[Math.floor(Math.random() * categories.length)];
+    currentExcuse = excuses[Math.floor(Math.random() * excuses.length)];
+    document.getElementById("excuse").innerText = currentExcuse;
+}
 
-    const list = excuses[randomCategory];
-    const excuse = list[Math.floor(Math.random() * list.length)];
+function copyExcuse() {
+    if (!currentExcuse) return;
 
-    const el = document.getElementById("excuse");
+    navigator.clipboard.writeText(currentExcuse);
+    alert("Excuse copied!");
+}
 
-    el.style.opacity = "0";
+function shareExcuse() {
+    if (!currentExcuse) return;
 
-    setTimeout(() => {
-        el.innerHTML = `
-            <strong>Category:</strong> ${randomCategory.toUpperCase()}<br><br>
-            ${excuse}
-        `;
-        el.style.opacity = "1";
-    }, 200);
+    if (navigator.share) {
+        navigator.share({
+            title: "My Excuse",
+            text: currentExcuse
+        });
+    } else {
+        alert("Sharing not supported on this device");
+    }
 }

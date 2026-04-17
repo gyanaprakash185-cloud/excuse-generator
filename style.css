@@ -84,3 +84,15 @@ button:hover {
     transform: scale(1.05);
     box-shadow: 0 0 20px rgba(255, 106, 0, 0.6);
 }
+
+.actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.actions button {
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.3);
+}
